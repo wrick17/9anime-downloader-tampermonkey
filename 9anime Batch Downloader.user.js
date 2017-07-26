@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         9anime Batch Downloader
 // @namespace    https://greasyfork.org/en/scripts/31118-9anime-batch-downloader
-// @version      1.0
+// @version      2.0
 // @description  Download all episodes automatically. Hope you have IDM or some download manager, as all the files will be downloaded continuously. Open any episode page and choose the episodes to download and hit Start!
 // @author       wrick17
 // @match        https://9anime.to/watch/*
