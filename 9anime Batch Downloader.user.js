@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         9anime Batch Downloader
 // @namespace    https://greasyfork.org/en/scripts/31118-9anime-batch-downloader
-// @version      2.2
+// @version      2.3
 // @description  Download all episodes automatically from Server F4 (only). Copy the links and add to IDM as a batch, and enjoy!!
 // @author       wrick17
 // @match        https://9anime.to/watch/*
@@ -18,7 +18,9 @@
       if (link) {
         clearInterval(interval);
         $('#servers')
-        .before('<button class="btn btn-primary btn-sm download-trigger" style="margin-bottom: 10px;">Download all of \'em!</button><div class="download-label" style="display: none; color: #9a9a9a; margin-bottom: 15px; ">Add the following links to your download manager and enjoy:</div>')
+        .before('<button class="btn btn-primary btn-sm download-trigger" style="margin-bottom: 10px;">Download all of \'em!</button>')
+        .before('<button class="btn btn-primary btn-sm download-close" style="margin-bottom: 10px; display: none;">Close the links box.</button>')
+        .before('<div class="download-label" style="display: none; color: #9a9a9a; margin-bottom: 15px; ">Add the following links to your download manager and enjoy:</div>')
         .before('<textarea class="download-links" style="display: none; width: 100%; height: 200px; background: #0f0e13; color: #9a9a9a; border: none; margin-bottom: 10px; padding: 10px;"></textarea>');
       }
     }, 100);
@@ -44,8 +46,15 @@
       });
 
       $('.download-links').val(linksBlob).show();
-      $('.download-label').show();
+      $('.download-label, .download-close').show();
+      $('.download-trigger').hide();
 
     });
+
+    $('body').on('click', '.download-close', function(e) {
+      $('.download-links').val('');
+      $('.download-label, .download-close, .download-links').hide();
+      $('.download-trigger').show();
+    })
 
 })();
