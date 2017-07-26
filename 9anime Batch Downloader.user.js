@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         9anime Batch Downloader
 // @namespace    https://greasyfork.org/en/scripts/31118-9anime-batch-downloader
-// @version      2.0
-// @description  Download all episodes automatically. Hope you have IDM or some download manager, as all the files will be downloaded continuously. Open any episode page and choose the episodes to download and hit Start!
+// @version      2.1
+// @description  Download all episodes automatically from Server F4 (only). Copy the links and add to IDM as a batch, and enjoy!!
 // @author       wrick17
 // @match        https://9anime.to/watch/*
 // @grant        none
@@ -10,20 +10,6 @@
 
 (function() {
     'use strict';
-
-    // Your code here...
-    if ($('#servers .ranger').length > 0) {
-
-      var activeList = $('#servers .server[data-type="direct"] .episodes.active');
-      $('#servers .server[data-type="direct"] .episodes.hidden li').appendTo(activeList);
-
-      $('#servers .ranger').hide();
-    }
-
-    var episodesArray = [];
-    $('#servers .server[data-type="direct"] .episodes.active li a').each(function(idx, el) {
-      episodesArray.push( $(el).html() );
-    });
 
     var interval = setInterval(function() {
       var downloadButton = $('.download.movie');
@@ -38,6 +24,11 @@
     }, 100);
 
     $('body').on('click', '.download-trigger', function(e) {
+
+      var episodesArray = [];
+      $('#servers .server[data-type="direct"] .episodes li a').each(function(idx, el) {
+        episodesArray.push( $(el).html() );
+      });
 
       var downloadButton = $('.download.movie');
       var link = downloadButton.attr('href');
