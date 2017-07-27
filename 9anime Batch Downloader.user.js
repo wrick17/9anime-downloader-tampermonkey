@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         9anime Batch Downloader
 // @namespace    https://greasyfork.org/en/scripts/31118-9anime-batch-downloader
-// @version      2.3.1
+// @version      2.3.2
 // @description  Download all episodes automatically from Server F4 (only). How to use: Open the anime page. Start playing the video. Just above the server list you should see the Download all button. Hit it, copy the links and add to your download manager as a batch, and enjoy!!
 // @author       wrick17
 // @match        https://9anime.to/watch/*
@@ -42,7 +42,7 @@
 
       var linksBlob = '';
       episodesArray.forEach(function(episode) {
-        linksBlob += start + episode + end;
+        linksBlob += encodeURI(start + episode + end);
       });
 
       $('.download-links').val(linksBlob).show();
